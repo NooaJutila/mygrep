@@ -2,7 +2,7 @@
 #include<cstring>
 #include<algorithm>
 #include<cctype>
-#include "mygrep.h"
+#include"mygrep.h"
 #include"options.h"
 using namespace std;
 

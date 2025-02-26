@@ -7,6 +7,7 @@ using namespace std;
 
 bool lineNumbering = false, occurences = false, ignoreCase = false, reverseSearch = false;
 
+
 int main(int argc, char * argv[]) {
 	string content, searchTerm;
 	string options = argv[1];
@@ -27,11 +28,12 @@ int main(int argc, char * argv[]) {
 		
 		try {
 			if (content.length() < 1 || searchTerm.length() < 1) {
-				throw runtime_error("Argument is too short (less than 1 character)");
+				throw Exception("Argument is too short (less than 1 character)");
 			}
 		}
-		catch (const runtime_error& error) {
-			cerr << "Runtime error: " << error.what() << endl;
+		catch (const Exception& exception) {
+			cerr << "Exception occurred: " << exception.what() << endl;
+			exit(-1);
 		}
 		
 		index = searchForString(content, searchTerm);
@@ -57,11 +59,12 @@ int main(int argc, char * argv[]) {
 
 		try {
 			if (content.length() < 1 || searchTerm.length() < 1) {
-				throw runtime_error("Argument is too short (less than 1 character)");
+				throw Exception("Argument is too short (less than 1 character)");
 			}
 		}
-		catch (const runtime_error& error) {
-			cerr << "Runtime error: " << error.what() << endl;
+		catch (const Exception& exception) {
+			cerr << "Exception occurred: " << exception.what() << endl;
+			exit(-1);
 		}
 
 		try {
@@ -70,7 +73,7 @@ int main(int argc, char * argv[]) {
 		catch (const runtime_error& error) {
 			cerr << "Runtime error: " << error.what() << endl;
 		}
-		catch (const exception& exception) {
+		catch (const Exception& exception) {
 			cerr << "Exception occurred: " << exception.what() << endl;
 		}
 		catch (...) {
@@ -108,10 +111,17 @@ int main(int argc, char * argv[]) {
 					reverseSearch = true;
 					break;
 				default:
+					try {
+						throw Exception("Invalid usage of arguments");
+					}
+					catch (const exception& exception) {
+						cerr << "Exception occurred: " << exception.what() << endl;
+					}
+					exit(-1);
 					break;
 				}
 			}
-			//	if no options are selected with -o; essentially increment 2
+			//	if no options are selected with -o
 			else {
 				throw runtime_error("Invalid usage of arguments");
 			}
