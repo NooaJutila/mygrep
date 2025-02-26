@@ -1,6 +1,17 @@
 This is a pseudocode representation of the functioning of the program.
 
+
+
+
+
+
+
+
     -- mygrep.cpp --
+
+
+if ./mygrep ?:
+    give some instructions
 
 if no arguments given:
     ask for search term and content string
@@ -19,7 +30,7 @@ if inappropriate amount of arguments:
 
     quit program (1)
 
-if 3 arguments (./mygrep <arg1> <arg2>)
+if 3 arguments (./mygrep <arg1> <arg2>) and <arg1> doesn't begin with -0
     assign arg1 to search term
     assign arg2 to content
 
@@ -58,7 +69,14 @@ quit program (0)
 
 
 
+
+
+
+
+
     -- searchForString --
+
+
 
 Parameters: (content, searchTerm)
 
@@ -90,7 +108,15 @@ end loop
 because no matches found, return 1'000'000'000
 
 
+
+
+
+
+
+
     -- searchFromFile --
+
+
 
 Parameters: (content, searchTerm)
 
@@ -117,4 +143,4 @@ end loop
 display occurences if user asked
 close file
 
-exit program (0)
+quit program (0)

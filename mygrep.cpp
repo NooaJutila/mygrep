@@ -5,46 +5,20 @@
 using namespace std;
 
 
-/*
-
-	--- ARGUMENTS: ---
-
-	NONE:
-
-	the program asks the user for both strings and returns the index of the found string.
-
-	NO -o GIVEN:
-
-	1: <search term> 2: <filename>
-
-	--------
-
-	FIRST:
-
-	-o: options enabled
-	after -o:
-	l: line numbering ENABLED
-	o: occurences ENABLED
-	i: capitalization IGNORED
-	r: reverse search
-
-	SECOND:
-	
-	<search term>
-
-	THIRD:
-
-	<filename>
-
-*/
-
 bool lineNumbering = false, occurences = false, ignoreCase = false, reverseSearch = false;
 
 int main(int argc, char * argv[]) {
 	string content, searchTerm;
+	string options = argv[1];
+
+	//	some instructions
+	if (options[0] == '?'){
+		cout << "./mygrep usage:\n-o: options enabled\nl: line numbering ENABLED\no: occurences ENABLED\ni : capitalization IGNORED\nr : reverse search\nempty arguments: program asks for string and search term\n";
+		cout << "--example--\n./mygrep -oloi <search term> <filename>\nno options selected: ./mygrep <search term> <filename>\n./mygrep -> program asks for string and search term during runtime";
+	}
 
 	//	if no arguments are given; essentially increment 1
-	if (argc == 1) {
+	else if (argc == 1) {
 		int index = 0;
 		cout << "Give a search string: ";
 		getline(cin, searchTerm);
@@ -71,13 +45,13 @@ int main(int argc, char * argv[]) {
 	
 	//	incorrect usage of mygrep, giving instructions
 	else if (argc == 2 || argc > 4) {
-		cout << "./mygrep usage:\n-o: options enabled\nl: line numbering ENABLED\no: occurences ENABLED\ni : capitalization IGNORED\nr : reverse search\nempty arguments: program asks for string and search term\n";
-		cout << "--example--\n./mygrep -oloi <search term> <filename>\nno options selected: ./mygrep <search term> <filename>\n./mygrep -> program asks for string and search term during runtime";
+		cout << "Incorrect usage of arguments!" << endl;
+		cout << "Do ./mygrep ? for instructions" << endl;
 		exit(1);
 	}
 
 	//	no options are entered and a filename is used for content
-	else if (argc == 3) {
+	else if (argc == 3 && !(options[0] == '-' && options[1] == 'o')) {
 		searchTerm = argv[1];
 		content = argv[2];
 
@@ -106,7 +80,6 @@ int main(int argc, char * argv[]) {
 
 	//	running with options enabled
 	else if (argc == 4) {
-		string options = argv[1];
 		searchTerm = argv[2];
 		content = argv[3];
 		try {
@@ -140,7 +113,7 @@ int main(int argc, char * argv[]) {
 			}
 			//	if no options are selected with -o; essentially increment 2
 			else {
-				throw exception("Invalid usage of arguments");
+				throw runtime_error("Invalid usage of arguments");
 			}
 		}
 		try {
@@ -156,7 +129,11 @@ int main(int argc, char * argv[]) {
 			cerr << "Unknown error occurred" << endl;
 		}
 	}
-
+	else{
+		cout << "Incorrect usage of arguments!" << endl;
+		cout << "Do ./mygrep ? for instructions" << endl;
+		exit(1);
+	}
 
 	return 0;
 }

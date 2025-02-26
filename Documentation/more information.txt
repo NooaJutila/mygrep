@@ -1,0 +1,5 @@
+I am aiming for 5 points from all increments.
+I learned how to make .exe files and run them from the console, I learned how to connect multiple c++ files using header files.
+I also learned how to pass arguments to a program as its being run and handle those arguments. This was good practice with exception handling, as well.
+
+You can contact me at nooa.jutila@gmail.com or 044 522 0305.
