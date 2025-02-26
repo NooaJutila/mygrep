@@ -60,7 +60,7 @@ int main(int argc, char * argv[]) {
 			cerr << "Runtime error: " << error.what() << endl;
 		}
 		
-		index = searchForString(content, searchTerm, 0);
+		index = searchForString(content, searchTerm);
 		if (index == 1'000'000'000) {	//	used to indicate unfound search term
 			cout << '"' << searchTerm << '"' << " NOT found in " << '"' << content << '"' << '.' << endl;
 		}
@@ -70,7 +70,7 @@ int main(int argc, char * argv[]) {
 	}
 	
 	//	incorrect usage of mygrep, giving instructions
-	else if (argc == 2) {
+	else if (argc == 2 || argc > 4) {
 		cout << "./mygrep usage:\n-o: options enabled\nl: line numbering ENABLED\no: occurences ENABLED\ni : capitalization IGNORED\nr : reverse search\nempty arguments: program asks for string and search term\n";
 		cout << "--example--\n./mygrep -oloi <search term> <filename>\nno options selected: ./mygrep <search term> <filename>\n./mygrep -> program asks for string and search term during runtime";
 		exit(1);
@@ -80,6 +80,16 @@ int main(int argc, char * argv[]) {
 	else if (argc == 3) {
 		searchTerm = argv[1];
 		content = argv[2];
+
+		try {
+			if (content.length() < 1 || searchTerm.length() < 1) {
+				throw runtime_error("Argument is too short (less than 1 character)");
+			}
+		}
+		catch (const runtime_error& error) {
+			cerr << "Runtime error: " << error.what() << endl;
+		}
+
 		try {
 			searchFromFile(content, searchTerm);
 		}
@@ -99,6 +109,14 @@ int main(int argc, char * argv[]) {
 		string options = argv[1];
 		searchTerm = argv[2];
 		content = argv[3];
+		try {
+			if (content.length() < 1 || searchTerm.length() < 1) {
+				throw runtime_error("Argument is too short (less than 1 character)");
+			}
+		}
+		catch (const runtime_error& error) {
+			cerr << "Runtime error: " << error.what() << endl;
+		}
 
 		for (int i = 2; i < options.length(); i++) {
 			char option = options[i];
@@ -122,9 +140,7 @@ int main(int argc, char * argv[]) {
 			}
 			//	if no options are selected with -o; essentially increment 2
 			else {
-				cout << "Warning: No options selected!" << endl;
-				searchTerm = argv[1];
-				content = argv[2];
+				throw exception("Invalid usage of arguments");
 			}
 		}
 		try {

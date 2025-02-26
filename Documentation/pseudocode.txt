@@ -1,0 +1,120 @@
+This is a pseudocode representation of the functioning of the program.
+
+    -- mygrep.cpp --
+
+if no arguments given:
+    ask for search term and content string
+
+    try:
+        check that strings are appropriate lengths
+    catch:
+        runtime error
+
+    search for the term from the content
+
+    quit program (0)
+
+if inappropriate amount of arguments:
+    give instructions
+
+    quit program (1)
+
+if 3 arguments (./mygrep <arg1> <arg2>)
+    assign arg1 to search term
+    assign arg2 to content
+
+    try:
+        searchFromFile
+    catch:
+        some errors
+
+    quit program (0)
+
+if 4 arguments (./mygrep <arg1> <arg2> <arg3>)
+    assign arg1 to options
+    assign arg2 to search term
+    assign arg3 to content
+
+    for length of options:
+
+        if first two characters are "-o":
+            switch options
+            case option
+                option = true
+                break
+        
+        else
+            throw exception:
+                incorrect usage of arguments
+    
+    end loop
+
+    try:
+        searchFromFile
+    catch:
+        some errors
+
+quit program (0)
+
+
+
+    -- searchForString --
+
+Parameters: (content, searchTerm)
+
+char* pointer to content
+char* pointer to search term
+
+size_t size of content
+size_t size of search term
+
+if ignore case enabled:
+    convert both strings to lowercase
+
+for all characters in content:
+
+    if current character == first character of search term:
+
+        check the next characters together:
+            add 1 to matchingCharacters
+            continue to next letter
+        
+        if next letter doesnt match:
+            reset matchingCharacters
+            continue to next letter
+        
+    if matchingCharacters == size of search term:
+        return the index of the first letter matched in content
+
+end loop
+because no matches found, return 1'000'000'000
+
+
+    -- searchFromFile --
+
+Parameters: (content, searchTerm)
+
+open file by name (content)
+
+if file didn't open:
+    throw runtime error
+
+for all lines in file:
+    if reading fails:
+        throw runtime error
+    
+    if search term found:
+        if reverse search is ON:
+            do nothing
+        if reverse search is OFF:
+            output line to console with selected options
+    
+    if search term NOT found:
+        do the opposite
+
+end loop
+
+display occurences if user asked
+close file
+
+exit program (0)

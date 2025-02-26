@@ -1,0 +1,33 @@
+	--- ARGUMENTS: ---
+
+	NONE:
+
+	the program asks the user for both strings and returns the index of the found string.
+
+	NO -o GIVEN:
+
+	1: <search term> 2: <filename>
+
+	--------
+
+	FIRST:
+
+	-o: options enabled
+	after -o:
+	l: line numbering ENABLED
+	o: occurences ENABLED
+	i: capitalization IGNORED
+	r: reverse search
+
+	SECOND:
+	
+	<search term>
+
+	THIRD:
+
+	<filename>
+
+    -------
+
+    The program should work with å, ä and ö.
+    Arguments have to be at least 1 character long.

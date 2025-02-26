@@ -1,0 +1,8 @@
+14.2.2025:
+I spent 3 hours programming and testing the algorithm now containted inside searchForString.cpp
+
+26.2.2025:
+I spent 10 hours making the rest of the project. I first started by separating the project into several files to learn
+to use header files, then I started making searchFromFile.cpp. After that, I included the argument features into the program
+and spent time debugging it.
+I will spend a few hours documenting the project.

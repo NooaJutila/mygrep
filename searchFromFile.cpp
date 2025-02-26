@@ -21,7 +21,7 @@ void searchFromFile(string content, string searchTerm) {
 			throw runtime_error("Issue reading from file: " + content);
 		}
 
-		index = searchForString(line, searchTerm, 0);
+		index = searchForString(line, searchTerm);
 		++lineNumber;
 
 		//	if term is found, display it

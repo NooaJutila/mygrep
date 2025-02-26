@@ -6,7 +6,7 @@
 #include"options.h"
 using namespace std;
 
-int searchForString(string content, string searchTerm, int startingIndex) {
+int searchForString(string content, string searchTerm) {
 
 	char* contentPtr = &content[0];  // This returns a non-const pointer to the data
 	char* searchTermPtr = &searchTerm[0];  // Same for searchTerm
@@ -15,9 +15,6 @@ int searchForString(string content, string searchTerm, int startingIndex) {
 	size_t searchTermLength = strlen(searchTermPtr);
 	size_t contentLength = strlen(contentPtr);
 
-	//	used to start searching for the second occurence
-	if (startingIndex > 0)
-		startingIndex += searchTermLength;
 
 	//	converts strings to lowercase if user chose so
 	if (ignoreCase) {
@@ -34,7 +31,7 @@ int searchForString(string content, string searchTerm, int startingIndex) {
 	int matchingCharacters = 0;
 
 	//	this loop iterates over the entire content string
-	for (int i = startingIndex; i < contentLength;) {
+	for (int i = 0; i < contentLength;) {
 
 		//	this for-loop checks if a letter matches with the starting character of the search term
 		//	loop ends when the search term has been checked
