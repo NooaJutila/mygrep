@@ -1,0 +1,6 @@
+﻿  mygrep.cpp
+  searchForString.cpp
+C:\Code\mygrep\searchForString.cpp(20,20): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+  searchFromFile.cpp
+  Generating Code...
+  mygrep.vcxproj -> C:\Code\mygrep\x64\Debug\mygrep.exe
