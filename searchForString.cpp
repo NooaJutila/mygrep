@@ -11,7 +11,7 @@ int searchForString(string content, string searchTerm) {
 	char* contentPtr = &content[0];  // This returns a non-const pointer to the data
 	char* searchTermPtr = &searchTerm[0];  // Same for searchTerm
 
-	//	strlen() wants const char* variables and thus they're used. size_t is a type for strlen() and it's an unsigned integer.
+	//	size_t is a type for strlen() and it's an unsigned integer.
 	size_t searchTermLength = strlen(searchTermPtr);
 	size_t contentLength = strlen(contentPtr);
 
